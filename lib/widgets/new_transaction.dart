@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter/cupertino.dart';
 
 class NewTransaction extends StatefulWidget {
   final Function addTx;
@@ -82,11 +85,16 @@ class _NewTransactionState extends State<NewTransaction> {
                           ? 'No Date Chosen!'
                           : 'Picked Date: ${DateFormat('d/MM/y').format(_selectedDate)}'),
                     ),
-                    FlatButton(
-                        textColor: Theme.of(context).primaryColor,
-                        child: Text('Chose Date',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        onPressed: _presentDatePicker),
+                    Platform.isIOS
+                        ? CupertinoButton(
+                            child: Text('Chose Date',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            onPressed: _presentDatePicker)
+                        : FlatButton(
+                            textColor: Theme.of(context).primaryColor,
+                            child: Text('Chose Date',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            onPressed: _presentDatePicker),
                   ],
                 ),
               ),
