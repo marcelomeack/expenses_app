@@ -118,6 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             if (isLandscape)
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('ShowChart'),
                   Switch(
